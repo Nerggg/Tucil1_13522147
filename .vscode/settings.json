@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "fstream": "cpp",
+        "cstdlib": "cpp",
+        "misc.h": "c",
+        "string": "cpp",
+        "new": "cpp"
+    }
+}
