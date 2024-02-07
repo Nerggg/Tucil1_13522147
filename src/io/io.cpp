@@ -1,6 +1,6 @@
 #include "io.h"
 
-void readinput(int *buffer, string **matrix, Sequence **seq) {    
+void readinput(int *buffer, int *width, int *height, string **matrix, Sequence **seq, int *seqAmount) {    
     string temp;
     ifstream file ("../input/input1.txt");
     if (file.is_open()) {
@@ -35,9 +35,9 @@ void readinput(int *buffer, string **matrix, Sequence **seq) {
 
         // ngebaca sequence
         getline(file, temp);
-        int seqAmount = stoi(temp);
-        *seq = new Sequence[seqAmount];
-        for (int i = 0; i < seqAmount; i++) {
+        *seqAmount = stoi(temp);
+        *seq = new Sequence[*seqAmount];
+        for (int i = 0; i < *seqAmount; i++) {
             int seqSet = 1;
             j = 0;
             getline(file, temp);

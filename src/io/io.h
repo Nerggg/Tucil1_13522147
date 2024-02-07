@@ -8,6 +8,6 @@
 #include "../adt/sequence.h"
 using namespace std;
 
-void readinput(int *buffer, string **matrix, Sequence **seq);
+void readinput(int *buffer, int *width, int *height, string **matrix, Sequence **seq, int *seqAmount);
 
 #endif
