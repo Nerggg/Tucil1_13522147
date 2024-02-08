@@ -5,6 +5,9 @@
         "cstdlib": "cpp",
         "misc.h": "c",
         "string": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "iomanip": "cpp",
+        "bitset": "cpp",
+        "set": "cpp"
     }
 }

@@ -7,6 +7,7 @@ using namespace std;
 
 typedef struct {
     string *set;
+    int length;
     int reward;
 } Sequence;
 
