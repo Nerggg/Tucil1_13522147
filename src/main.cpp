@@ -44,12 +44,12 @@ bool turnCheck(int buffer, string input, Coordinate **check) {
 
     for (int i = 1; i < buffer; i++) {
         if (i % 2 != 0) {
-            if ((*check)[i].x != (*check)[i-1].x) {
+            if ((*check)[i].x != (*check)[i-1].x || (*check)[i].y == (*check)[i-1].y) {
                 return false;
             }
         }
         else if (i % 2 == 0) {
-            if ((*check)[i].y != (*check)[i-1].y) {
+            if ((*check)[i].y != (*check)[i-1].y || (*check)[i].x == (*check)[i-1].x) {
                 return false;
             }
         }
@@ -62,30 +62,31 @@ bool checkDone(int *seqPointer, Sequence *seq, int idx) {
     return seqPointer[idx] == (seq[idx].length - 1);
 }
 
-bool isValid(int x, int y) {
-    int width = 6, height = 6;
+bool isValid(int x, int y, int width, int height) {
     return x >= 0 && x < width && y >= 0 && y < height;
 }
 
-int calculateReward(int buffer, string input, int width, int height, string *matrix, Sequence *seq, int seqAmount, int *seqPointer) {
+int calculateReward(int buffer, string input, string *solution, int width, int height, string *matrix, Sequence *seq, int seqAmount, int *seqPointer) {
     Coordinate *coor = new Coordinate[buffer];
     bool valid = turnCheck(buffer, input, &coor);
+
     if (!valid) {
         return 0;
     }
 
     int result = 0;
-    cout << "input nya " << input << endl;
+    // cout << "input nya " << input << endl;
     for (int i = 0; i < buffer; i++) {
-        cout << "i nya " << i << endl;
+        // cout << "i nya " << i << endl;
         for (int a = 0; a < seqAmount; a++) {            
-            cout << "counter seqAmount nya " << a << endl;
-            cout << "pointernya ada di " << seqPointer[a] << endl;
-            cout << "sedangkan seq nya " << seq[a].set[seqPointer[a]] << endl;
+            // cout << "counter seqAmount nya " << a << endl;
+            // cout << "pointernya ada di " << seqPointer[a] << endl;
+            // cout << "sedangkan seq nya " << seq[a].set[seqPointer[a]] << endl;
             // cout << "nilai x dari coor nya " << coor[i].x << endl;
             // cout << "nilai y dari coor nya " << coor[i].y << endl;
             // cout << "sedangkan nilai matriks nya " << matrix[coor[i].y * width + coor[i].x] << endl;
-            cout << endl;
+            // cout << endl;
+
             if (matrix[coor[i].y * width + coor[i].x] == seq[a].set[seqPointer[a]]) {
                 seqPointer[a]++;
             }
@@ -96,13 +97,19 @@ int calculateReward(int buffer, string input, int width, int height, string *mat
             if (checkDone(seqPointer, seq, a)) {
                 result += seq[a].reward;
                 seqPointer[a] = 0;
+                // cout << "sequence yg ngasih nilai tuh " << a << endl;
+                // cout << "current result " << result << endl;
             }
         }
     }
+    if (result == 50) {
+        // cout << "pas 50, inputnya adalah " << input << endl;
+    }
+    *solution = input;
     return result;
 }
 
-void generateCombinationsUtil(int x, int y, int n, string path, vector<string> &combinations) {
+void generateCombinationsUtil(int width, int height, int x, int y, int n, string path, vector<string> &combinations) {
     // Base case: If n is 0, add the path to combinations
     if (n == 0) {
         combinations.push_back(path);
@@ -116,21 +123,19 @@ void generateCombinationsUtil(int x, int y, int n, string path, vector<string> &
             int newY = y + j;
 
             // Proceed only if the coordinate is valid and not visited before
-            if (isValid(newX, newY)) {
-                // Recur for the next coordinate with reduced n
-                generateCombinationsUtil(newX, newY, n - 1, path + "(" + to_string(newX) + "," + to_string(newY) + ") ", combinations);
+            if (isValid(newX, newY, width, height)) {
+                generateCombinationsUtil(width, height, newX, newY, n - 1, path + "(" + to_string(newX) + "," + to_string(newY) + ") ", combinations);                
             }
         }
     }
 }
 
 // Function to generate all combinations of length n
-vector<string> generateCombinations(int n) {
+vector<string> generateCombinations(int n, int width, int height) {
     vector<string> combinations;
-    int width = 6, height = 6;
     for (int i = 0; i < width; i++) {
         for (int j = 0; j < height; j++) {
-            generateCombinationsUtil(i, j, n - 1, "(" + to_string(i) + "," + to_string(j) + ") ", combinations);
+            generateCombinationsUtil(width, height, i, j, n - 1, "(" + to_string(i) + "," + to_string(j) + ") ", combinations);
         }
     }
     return combinations;
@@ -139,7 +144,7 @@ vector<string> generateCombinations(int n) {
 
 int main() {
     int buffer, width, height, seqAmount;
-    string *matrix;
+    string *matrix, solutionTemp, solution;
     Sequence *seq;
     readinput(&buffer, &width, &height, &matrix, &seq, &seqAmount);
 
@@ -151,15 +156,15 @@ int main() {
  
     // begin main algorithm
     clock_t start = clock();
-    vector<string> combinations = generateCombinations(buffer); 
+    vector<string> combinations = generateCombinations(buffer, width, height); 
     
     // Display the generated combinations
     int max = 0, temp;
-    cout << "Generated combinations:\n";
     for (const auto &combination : combinations) {
-        temp = calculateReward(buffer, combination, width, height, matrix, seq, seqAmount, seqPointer);
+        temp = calculateReward(buffer, combination, &solutionTemp, width, height, matrix, seq, seqAmount, seqPointer);
         if (temp > max) {
             max = temp;
+            solution = solutionTemp;
         }
     }
     
@@ -168,4 +173,5 @@ int main() {
     cout << "Done!" << endl;
     cout << "Time taken: " << timeTaken << endl;
     cout << "Max value: " << max << endl;
+    cout << "Buffer solution: " << solution << endl;
 }
