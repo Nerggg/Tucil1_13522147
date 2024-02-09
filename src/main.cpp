@@ -4,6 +4,7 @@
 #include <vector>
 #include <iomanip>
 #include <time.h>
+#include <memory>
 #include "io/io.h"
 using namespace std;
 
@@ -12,7 +13,7 @@ typedef struct {
     int y;
 } Coordinate;
 
-bool turnCheck(int buffer, string input, Coordinate **check) {
+bool turnCheck(int buffer, string input, unique_ptr<Coordinate[]>& check) {
     int pointer = 0;
     int xSize, ySize, xTemp, yTemp;
     for (int i = 0; i < input.size(); i++) {
@@ -37,25 +38,25 @@ bool turnCheck(int buffer, string input, Coordinate **check) {
         }
 
         if (input[i] == ' ') {
-            (*check)[pointer] = {xTemp, yTemp};
+            check[pointer] = {xTemp, yTemp};
             pointer++;
         }
     }
 
     for (int i = 1; i < buffer; i++) {
         if (i % 2 != 0) {
-            if ((*check)[i].x != (*check)[i-1].x || (*check)[i].y == (*check)[i-1].y) {
+            if (check[i].x != check[i-1].x || check[i].y == check[i-1].y) {
                 return false;
             }
         }
         else if (i % 2 == 0) {
-            if ((*check)[i].y != (*check)[i-1].y || (*check)[i].x == (*check)[i-1].x) {
+            if (check[i].y != check[i-1].y || check[i].x == check[i-1].x) {
                 return false;
             }
         }
     }
 
-    if ((*check)[0].y != 0) {
+    if (check[0].y != 0) {
         return false;
     }
 
@@ -63,11 +64,11 @@ bool turnCheck(int buffer, string input, Coordinate **check) {
 }
 
 bool checkDone(int *seqPointer, Sequence *seq, int idx) {
-    return seqPointer[idx] == (seq[idx].length - 1);
+    return seqPointer[idx] == (seq[idx].length);
 }
 
-int calculateReward(int buffer, string input, string *solution, int width, int height, string *matrix, Sequence *seq, int seqAmount, int *seqPointer, Coordinate **coor) {
-    *coor = new Coordinate[buffer];
+int calculateReward(int buffer, string input, string *solution, int width, int height, string *matrix, Sequence *seq, int seqAmount, int *seqPointer, unique_ptr<Coordinate[]>& coor) {
+    coor = make_unique<Coordinate[]>(buffer);
     bool valid = turnCheck(buffer, input, coor);
 
     if (!valid) {
@@ -75,19 +76,9 @@ int calculateReward(int buffer, string input, string *solution, int width, int h
     }
 
     int result = 0;
-    // cout << "input nya " << input << endl;
     for (int i = 0; i < buffer; i++) {
-        // cout << "i nya " << i << endl;
         for (int a = 0; a < seqAmount; a++) {            
-            // cout << "counter seqAmount nya " << a << endl;
-            // cout << "pointernya ada di " << seqPointer[a] << endl;
-            // cout << "sedangkan seq nya " << seq[a].set[seqPointer[a]] << endl;
-            // cout << "nilai x dari coor nya " << coor[i].x << endl;
-            // cout << "nilai y dari coor nya " << coor[i].y << endl;
-            // cout << "sedangkan nilai matriks nya " << matrix[coor[i].y * width + coor[i].x] << endl;
-            // cout << endl;
-
-            if (matrix[(*coor)[i].y * width + (*coor)[i].x] == seq[a].set[seqPointer[a]]) {
+            if (matrix[coor[i].y * width + coor[i].x] == seq[a].set[seqPointer[a]]) {
                 seqPointer[a]++;
             }
             else {
@@ -101,7 +92,7 @@ int calculateReward(int buffer, string input, string *solution, int width, int h
                 cout << "current result " << result << endl;
                 cout << "current sequence ";
                 for (int i = 0; i < buffer; i++) {
-                    cout << matrix[(*coor)[i].y * width + (*coor)[i].x] << " ";
+                    cout << matrix[coor[i].y * width + coor[i].x] << " ";
                 } 
                 cout << endl << endl;
             }
@@ -135,20 +126,17 @@ void generateCombinations(const int width, const int height, const int n, vector
     }
 }
 
-
 int main() {
     int buffer, width, height, seqAmount;
     string *matrix, solutionTemp, solution;
     Sequence *seq;
     readinput(&buffer, &width, &height, &matrix, &seq, &seqAmount);
 
-    // pointer untuk masing2 sequence
-    int *seqPointer = new int[seqAmount];
+    unique_ptr<int[]> seqPointer(new int[seqAmount]);
     for (int i = 0; i < seqAmount; i++) {
         seqPointer[i] = 0;
     }
  
-    // begin main algorithm
     clock_t start = clock();
 
     vector<string> combinations;
@@ -158,15 +146,14 @@ int main() {
         }
     }
     
-    // ngitung reward
     int max = 0, temp;
-    Coordinate *coor, *resultCoor;
+    unique_ptr<Coordinate[]> coor, resultCoor;
     for (const auto &combination : combinations) {
-        temp = calculateReward(buffer, combination, &solutionTemp, width, height, matrix, seq, seqAmount, seqPointer, &coor);
+        temp = calculateReward(buffer, combination, &solutionTemp, width, height, matrix, seq, seqAmount, seqPointer.get(), coor);
         if (temp > max) {
             max = temp;
             solution = solutionTemp;
-            resultCoor = coor;
+            resultCoor = move(coor);
         }
     }
 
