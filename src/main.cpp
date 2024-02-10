@@ -107,22 +107,25 @@ int calculateReward(int buffer, string input, string *solution, int width, int h
 }
 
 // Function to generate all combinations of length n
-void generateCombinations(const int width, const int height, const int n, vector<string>& combinations, string current, int x, int y) {
+void generateCombinations(int width, int height, vector<pair<int, int>>& current, int n, vector<string>& combinations, int startX = 0, int startY = 0) {
     if (n == 0) {
-        combinations.push_back(current);
+        // Base case: if n is 0, concatenate the current combination into a string
+        string combinationStr;
+        for (auto& coord : current) {
+            combinationStr += "(" + to_string(coord.first) + "," + to_string(coord.second) + ") ";
+        }
+        combinations.push_back(combinationStr);
         return;
     }
 
-    for (int i = -1; i <= 1; ++i) {
-        for (int j = -1; j <= 1; ++j) {
-            int newX = x + i;
-            int newY = y + j;
-
-            if (newX >= 0 && newX < width && newY >= 0 && newY < height) {
-                string newCoord = current + "(" + to_string(newX) + "," + to_string(newY) + ") ";
-                generateCombinations(width, height, n - 1, combinations, newCoord, newX, newY);
-            }
+    // Recursive case: generate all possible combinations for the next coordinate
+    for (int x = startX; x < width; ++x) {
+        for (int y = startY; y < height; ++y) {
+            current.push_back({x, y});
+            generateCombinations(width, height, current, n - 1, combinations, x, y + 1);
+            current.pop_back();
         }
+        startY = 0; // Reset startY for new rows
     }
 }
 
@@ -140,10 +143,13 @@ int main() {
     clock_t start = clock();
 
     vector<string> combinations;
-    for (int i = 0; i < width; ++i) {
-        for (int j = 0; j < height; ++j) {
-            generateCombinations(width, height, buffer, combinations, "", i, j);
-        }
+
+    vector<pair<int, int>> current;
+    // Ensuring the y axis of the first coordinate is always 0
+    for (int x = 0; x < width; ++x) {
+        current.push_back({x, 0});
+        generateCombinations(width, height, current, buffer - 1, combinations);
+        current.pop_back();
     }
     
     int max = 0, temp;
