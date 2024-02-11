@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 #include <cstdlib>
 #include "../adt/sequence.h"
 using namespace std;

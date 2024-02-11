@@ -10,6 +10,7 @@
         "bitset": "cpp",
         "set": "cpp",
         "ostream": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "*.tcc": "cpp"
     }
 }
