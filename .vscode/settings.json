@@ -11,6 +11,7 @@
         "set": "cpp",
         "ostream": "cpp",
         "iosfwd": "cpp",
-        "*.tcc": "cpp"
+        "*.tcc": "cpp",
+        "vector": "cpp"
     }
 }

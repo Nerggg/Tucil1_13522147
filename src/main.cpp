@@ -136,11 +136,14 @@ vector<vector<pair<int, int>>> generateCombinations(int width, int height, int b
     }
 }
 
-int main() {
+void fileoption() {
+    string filename;
+    cout << "Enter the file name (without format)" << endl;
+    cin >> filename;
     int buffer, width, height, seqAmount;
     string *matrix;
     Sequence *seq;
-    readinput(&buffer, &width, &height, &matrix, &seq, &seqAmount);
+    readinput(filename, &buffer, &width, &height, &matrix, &seq, &seqAmount);
 
     unique_ptr<int[]> seqPointer(new int[seqAmount]);
     for (int i = 0; i < seqAmount; i++) {
@@ -164,7 +167,7 @@ int main() {
     clock_t stop = clock();
     double timeTaken = (double)(stop - start) / CLOCKS_PER_SEC;
     cout << "Done!" << endl;
-    cout << "Time taken: " << timeTaken << endl;
+    cout << "Time taken: " << timeTaken * 1000 << " ms" << endl;
     cout << "Max value: " << max << endl;
 
     if (max == 0) {
@@ -176,10 +179,50 @@ int main() {
             cout << matrix[resultCoor[i].first * width + resultCoor[i].second] << " ";
         } 
         cout << endl;
-        cout << "Buffer solution's coordinate: " << endl;
+        cout << "Buffer solution's coordinate: ";
         for (int i = 0; i < buffer; i++) {
             cout << "(" << resultCoor[i].second << "," << resultCoor[i].first << ") ";   
         }
         cout << endl;
     }
+}
+
+void clioption() {
+    int n, buffer, width, height, seqAmount, intTemp;
+    vector<string> token;
+    string strTemp;
+    cout << "Enter the number of token types: ";
+    cin >> n;
+    cout << "Enter the tokens:\nNote: The length must be 2 and seperate it with enter." << endl;
+    for (int i = 0; i < n; i++) {
+        cin >> strTemp;
+        token.push_back(strTemp);
+    }
+    cout << "Enter the buffer size: ";
+    cin >> buffer;
+    cout << "Enter the matrix's width: ";
+    cin >> width;
+    cout << "Enter the matrix's height: ";
+    cin >> height;
+    cout << "Enter the amount of sequences: ";
+    cin >> seqAmount;
+    cout << "Enter the maximum length of the sequence: ";
+    cin >> n;
+}
+
+int main() {
+    int opt;
+    cout << "Welcome to Cyberpunk Breach Protocol Hacker!" << endl;
+    cout << "Choose the input option:" << endl;
+    cout << "[1] Input from file (put the file in src/input)" << endl;
+    cout << "[2] Input from CLI (will be randomized)" << endl;
+    cin >> opt;
+
+    if (opt == 1) {
+        fileoption();
+    }
+    else if (opt == 2) {
+        clioption();
+    }
+
 }

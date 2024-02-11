@@ -1,8 +1,8 @@
 #include "io.h"
 
-void readinput(int *buffer, int *width, int *height, string **matrix, Sequence **seq, int *seqAmount) {    
+void readinput(string filename, int *buffer, int *width, int *height, string **matrix, Sequence **seq, int *seqAmount) {    
     string temp;
-    ifstream file ("../input/input1.txt");
+    ifstream file ("./input/" + filename + ".txt");
     if (file.is_open()) {
         // dapetin buffer di baris pertama
         getline(file, temp);

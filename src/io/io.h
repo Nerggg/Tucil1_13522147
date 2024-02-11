@@ -9,6 +9,6 @@
 #include "../adt/sequence.h"
 using namespace std;
 
-void readinput(int *buffer, int *width, int *height, string **matrix, Sequence **seq, int *seqAmount);
+void readinput(string filename, int *buffer, int *width, int *height, string **matrix, Sequence **seq, int *seqAmount);
 
 #endif
