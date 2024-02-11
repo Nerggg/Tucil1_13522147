@@ -1,0 +1,16 @@
+Matrix:
+7A 55 E9 E9 
+55 7A 1C 7A 
+55 1C 1C 55 
+BD 1C 7A 1C 
+
+Sequences:
+1C 1C 7A 
+Reward: 50
+7A 55 7A 1C 
+Reward: 10
+
+Time taken: 0.276 ms
+Max value: 50
+Buffer solution: 55 1C 1C 7A 
+Buffer solution's coordinate: (1,0) (1,2) (2,2) (2,3) 

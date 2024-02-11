@@ -1,0 +1,20 @@
+Matrix:
+7A 7A 7A 7A 
+7A 7A 7A 7A 
+7A 7A 7A 7A 
+7A 7A 7A 7A 
+
+Sequences:
+7A 
+Reward: 10
+7A 7A 
+Reward: 20
+7A 7A 7A 
+Reward: 30
+7A 7A 7A 7A 
+Reward: 40
+
+Time taken: 0.298 ms
+Max value: 150
+Buffer solution: 7A 7A 7A 7A 
+Buffer solution's coordinate: (1,0) (1,1) (0,1) (0,0) 

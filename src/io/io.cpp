@@ -62,3 +62,41 @@ void readinput(string filename, int *buffer, int *width, int *height, string **m
 
     }
 }
+
+void saveToFile(string filename, int buffer, int height, int width, string *matrix, int seqAmount, Sequence *seq, double timeTaken, int reward, vector<pair<int, int>> coor) {
+    ofstream file ("./output/" + filename + ".txt");
+    if (file.is_open()) {
+        file << "Matrix:" << endl;
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                file << matrix[i * width + j] << " ";
+            }
+            file << endl;
+        }
+        file << endl;
+
+        file << "Sequences:" << endl;
+        for (int i = 0; i < seqAmount; i++) {
+            for (int j = 0; j < seq[i].length; j++) {
+                file << seq[i].set[j] << " ";
+            }
+            file << endl;
+            file << "Reward: " << seq[i].reward;
+            file << endl;
+        }
+        file << endl;
+
+        file << "Time taken: " << timeTaken * 1000 << " ms" << endl;
+        file << "Max value: " << reward << endl;
+        file << "Buffer solution: ";
+        for (int i = 0; i < buffer; i++) {
+            file << matrix[coor[i].first * width + coor[i].second] << " ";
+        } 
+        file << endl;
+        file << "Buffer solution's coordinate: ";
+        for (int i = 0; i < buffer; i++) {
+            file << "(" << coor[i].second << "," << coor[i].first << ") ";   
+        }
+        file << endl;
+    }
+}
