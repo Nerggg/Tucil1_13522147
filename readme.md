@@ -53,7 +53,7 @@ Just [run](#how-to-use) the program and it will tell you what to do next.
 │   ├── linuxRun
 │   └── windowsRun.exe
 ├── doc
-│   └── Tucil1_13522147.pdf
+│   └── Tucil1_K3_13522147_Ikhwan Al Hakim.pdf
 ├── readme.md
 └── src
     ├── adt
