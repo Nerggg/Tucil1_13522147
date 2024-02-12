@@ -88,15 +88,20 @@ void saveToFile(string filename, int buffer, int height, int width, string *matr
 
         file << "Time taken: " << timeTaken * 1000 << " ms" << endl;
         file << "Max value: " << reward << endl;
-        file << "Buffer solution: ";
-        for (int i = 0; i < buffer; i++) {
-            file << matrix[coor[i].first * width + coor[i].second] << " ";
-        } 
-        file << endl;
-        file << "Buffer solution's coordinate: ";
-        for (int i = 0; i < buffer; i++) {
-            file << "(" << coor[i].second << "," << coor[i].first << ") ";   
+        if (reward == 0) {
+            file << "There is no buffer solution because the max value is 0." << endl;
         }
-        file << endl;
+        else {
+            file << "Buffer solution: ";
+            for (int i = 0; i < buffer; i++) {
+                file << matrix[coor[i].first * width + coor[i].second] << " ";
+            } 
+            file << endl;
+            file << "Buffer solution's coordinate: ";
+            for (int i = 0; i < buffer; i++) {
+                file << "(" << coor[i].second << "," << coor[i].first << ") ";   
+            }
+            file << endl;
+        }
     }
 }
