@@ -2,7 +2,7 @@
 
 void readinput(string filename, int *buffer, int *width, int *height, string **matrix, Sequence **seq, int *seqAmount) {    
     string temp;
-    ifstream file ("./input/" + filename + ".txt");
+    ifstream file ("../src/input/" + filename + ".txt");
     if (file.is_open()) {
         // dapetin buffer di baris pertama
         getline(file, temp);
@@ -64,7 +64,7 @@ void readinput(string filename, int *buffer, int *width, int *height, string **m
 }
 
 void saveToFile(string filename, int buffer, int height, int width, string *matrix, int seqAmount, Sequence *seq, double timeTaken, int reward, vector<pair<int, int>> coor) {
-    ofstream file ("./output/" + filename + ".txt");
+    ofstream file ("../src/output/" + filename + ".txt");
     if (file.is_open()) {
         file << "Matrix:" << endl;
         for (int i = 0; i < height; i++) {
