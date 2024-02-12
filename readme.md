@@ -82,7 +82,19 @@ Just [run](#how-to-use) the program and it will tell you what to do next.
     ```
     git clone https://github.com/Nerggg/Tucil1_13522147
     ```
-2. Run the executable on the `bin` directory
+2. Navigate to the `bin` directory
+    ```
+    cd Tucil1_13522147/bin
+    ```
+2. Run the executable  
+    Windows:
+    ```
+    windowsRun.exe
+    ```
+    Linux:
+    ```
+    ./linuxRun
+    ```
 
 ### Dependencies
 - C++ Compiler
