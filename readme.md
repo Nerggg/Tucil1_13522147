@@ -86,3 +86,5 @@ Just [run](#how-to-use) the program and it will tell you what to do next.
 
 ### Dependencies
 - C++ Compiler
+
+Note: If you compile the code in the `src` directory, you have to move it to the `bin` directory in order for the IO functionality to work properly.
