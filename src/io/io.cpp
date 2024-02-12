@@ -103,5 +103,6 @@ void saveToFile(string filename, int buffer, int height, int width, string *matr
             }
             file << endl;
         }
+        cout << "File saved!" << endl;
     }
 }

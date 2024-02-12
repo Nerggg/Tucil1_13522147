@@ -53,23 +53,10 @@ int calculateReward(int buffer, vector<pair<int, int>> input, int width, int hei
             if (checkDone(seqPointer, seq, a)) {
                 result += seq[a].reward;
                 seqPointer[a] = 0;
-                // cout << "sequence yg ngasih nilai tuh " << a << endl;
-                // cout << "current result " << result << endl;
-                // cout << "current sequence ";
-                // for (int i = 0; i < buffer; i++) {
-                //     cout << matrix[input[i].first * width + input[i].second] << " ";
-                // } 
-                // cout << endl << endl;
             }
         }
     }
 
-    // debug begin
-    // if (coor[0].x == 0 && coor[0].y == 0 && coor[1].x == 0 && coor[1].y == 3 && coor[2].x == 2 && coor[2].y == 3 && coor[3].x == 2 && coor[3].y == 4 && coor[4].x == 5 && coor[4].y == 4 && coor[5].x == 5 && coor[5].y == 3 && coor[6].x == 4 && coor[6].y == 3) {
-    // if (coor[0].x == 0 && coor[0].y == 0 && coor[1].x == 0 && coor[1].y == 3) {
-    //     cout << input << endl;
-    // }
-    // debug end
     for (int i = 0; i < seqAmount; i++) {
         seqPointer[i] = 0;
     }
@@ -83,7 +70,6 @@ vector<vector<pair<int, int>>> generateCombinations(int width, int height, int b
 
     vector<vector<int>> matrix(height, vector<int>(width));
 
-    // Fill the matrix with values using nested loops
     int count = 1;
     for (int i = 0; i < height; ++i) {
         for (int j = 0; j < width; ++j) {

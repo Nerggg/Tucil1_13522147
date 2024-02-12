@@ -1,24 +1,24 @@
 Matrix:
-1C 7A E9 BD 1C BD 7A BD 
-7A FF E9 55 55 FF E9 BD 
-FF 1C E9 55 1C FF 1C 55 
-BD 1C 7A 7A 1C 1C 1C 55 
-7A E9 E9 1C 1C E9 55 7A 
-E9 FF BD BD BD FF 1C 7A 
-FF E9 55 1C 55 FF FF BD 
-FF 55 BD E9 1C BD FF 1C 
+E9 FF BD 7A 1C 1C 1C 1C 
+FF FF BD E9 1C 55 BD 7A 
+E9 55 BD E9 E9 E9 55 7A 
+55 55 BD 1C E9 FF E9 7A 
+E9 7A E9 FF 1C BD FF FF 
+7A 1C 7A 1C 1C FF BD E9 
+1C E9 1C E9 BD 55 E9 7A 
+7A 55 1C 1C 55 E9 55 FF 
 
 Sequences:
-55 
-Reward: 24
-1C 7A 55 E9 BD 
-Reward: 12
-7A 7A 55 7A FF BD 1C 
-Reward: 74
-FF 55 1C 1C 
-Reward: 91
+7A FF 
+Reward: 92
+7A 
+Reward: 41
+E9 55 E9 7A 7A 7A 
+Reward: 61
+1C BD 
+Reward: 92
 
-Time taken: 3728.73 ms
-Max value: 163
-Buffer solution: 7A FF 55 1C 1C 55 55 
-Buffer solution's coordinate: (1,0) (1,1) (3,1) (3,4) (4,4) (4,1) (3,1) 
+Time taken: 3710.53 ms
+Max value: 440
+Buffer solution: 7A FF 7A FF 7A FF 7A 
+Buffer solution's coordinate: (3,0) (3,4) (1,4) (1,0) (3,0) (3,4) (1,4) 

@@ -9,7 +9,7 @@ Sequences:
 7A 55 1C 7A 55 1C 
 Reward: 50
 
-Time taken: 70.287 ms
+Time taken: 69.023 ms
 Max value: 50
 Buffer solution: E9 7A 55 1C 7A 55 1C 
 Buffer solution's coordinate: (2,0) (2,3) (4,3) (4,0) (0,0) (0,1) (2,1) 
