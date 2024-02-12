@@ -9,7 +9,7 @@ Sequences:
 1C 1C 7A BD 
 Reward: 50
 
-Time taken: 3.642 ms
+Time taken: 3.78 ms
 Max value: 50
 Buffer solution: 55 1C 1C 7A BD 
 Buffer solution's coordinate: (1,0) (1,2) (2,2) (2,3) (0,3) 

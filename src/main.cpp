@@ -166,7 +166,7 @@ void fileOption() {
 
     clock_t stop = clock();
     double timeTaken = (double)(stop - start) / CLOCKS_PER_SEC;
-    cout << "Done!" << endl;
+    cout << endl << "Done!" << endl;
     cout << "Time taken: " << timeTaken * 1000 << " ms" << endl;
     cout << "Max value: " << max << endl;
 
@@ -203,7 +203,7 @@ void cliOption() {
     string strTemp;
     cout << "Enter the number of token types: ";
     cin >> n;
-    cout << "Enter the tokens:\nNote: The length must be 2 and seperate it with enter." << endl;
+    cout << "Enter the tokens:\nNote: The length must be 2." << endl;
     for (int i = 0; i < n; i++) {
         cin >> strTemp;
         token.push_back(strTemp);
@@ -256,7 +256,6 @@ void cliOption() {
         }
         cout << endl << "Reward: " << seq[i].reward << endl;
     }
-    cout << endl;
 
     unique_ptr<int[]> seqPointer(new int[seqAmount]);
     for (int i = 0; i < seqAmount; i++) {
@@ -298,6 +297,7 @@ void cliOption() {
         }
         cout << endl;
     }    
+    cout << endl;
 
     char yOrN;
     cout << "Do you want to save the solution into a file? (Y/N)" << endl;

@@ -14,7 +14,7 @@ Reward: 20
 BD 1C BD 55 
 Reward: 30
 
-Time taken: 347.732 ms
+Time taken: 351.24 ms
 Max value: 50
 Buffer solution: 55 BD 7A BD 1C BD 55 
 Buffer solution's coordinate: (5,0) (5,3) (2,3) (2,4) (5,4) (5,2) (0,2) 

@@ -1,0 +1,23 @@
+Matrix:
+FF E9 E9 FF 1C 1C 7A 
+BD FF FF FF E9 FF 7A 
+7A 7A FF BD 55 BD E9 
+FF 7A 55 FF 1C 1C E9 
+7A BD BD FF FF FF E9 
+BD BD E9 1C 7A E9 BD 
+1C 55 BD 55 BD 7A E9 
+
+Sequences:
+7A FF 55 
+Reward: 36
+55 7A 
+Reward: 49
+BD 
+Reward: 20
+7A 55 7A 
+Reward: 93
+
+Time taken: 184.578 ms
+Max value: 211
+Buffer solution: E9 55 7A 55 7A BD 
+Buffer solution's coordinate: (2,0) (2,3) (1,3) (1,6) (5,6) (5,2) 
