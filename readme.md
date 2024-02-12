@@ -9,7 +9,6 @@
   - [Structure](#structure)
   - [How to Use](#how-to-use)
     - [Dependencies](#dependencies)
-    - [Installation](#installation)
 
 ## General Information
 Breach Protocol is one of the minigames contained in the video game Cyberpunk 2077. This minigame presents code breaking and hacking challenges that allow players to hack security systems, access sensitive information, or take control of electronic devices in the game world.  
@@ -28,7 +27,7 @@ This program can solve a Breach Protocol minigame.
 There are two input modes in this program:  
 
 1. Input from file  
-Structure your file like this:  
+Structure your input file like this:  
     ```
     buffer_size
     matrix_width matrix_height
@@ -57,30 +56,33 @@ Just [run](#how-to-use) the program and it will tell you what to do next.
 │   └── Tucil1_13522147.pdf
 ├── readme.md
 └── src
-├── adt
-│   └── sequence.h
-├── input
-│   ├── input1.txt
-│   ├── input2.txt
-│   ├── input3.txt
-│   └── input4.txt
-├── io
-│   ├── io.cpp
-│   └── io.h
-├── main.cpp
-└── output
-    ├── cli1.txt
-    ├── cli2.txt
-    ├── cli3.txt
-    ├── file1.txt
-    ├── file2.txt
-    ├── file3.txt
-    └── file4.txt  
+    ├── adt
+    │   └── sequence.h
+    ├── input
+    │   ├── input1.txt
+    │   ├── input2.txt
+    │   ├── input3.txt
+    │   └── input4.txt
+    ├── io
+    │   ├── io.cpp
+    │   └── io.h
+    ├── main.cpp
+    └── output
+        ├── cli1.txt
+        ├── cli2.txt
+        ├── cli3.txt
+        ├── file1.txt
+        ├── file2.txt
+        ├── file3.txt
+        └── file4.txt  
 ```
----
 
 ## How to Use
-    belom kelar
+1. Clone this repository
+    ```
+    git clone https://github.com/Nerggg/Tucil1_13522147
+    ```
+2. Run the executable on the `bin` directory
 
 ### Dependencies
 - C++ Compiler
